@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @layer components {
+  .card {
+    @apply w-56 h-56 cursor-pointer border-pink-600 border rounded-lg [transform-style:preserve-3d] transition-transform [perspective: 600px;];
+  }
+  .cardFlip {
+    @apply -translate-x-full -rotate-180;
+  }
+  .closedCard {
+    @apply bg-gray-700 w-full h-full [backface-visibility:hidden];
+  }
+  .openCard {
+    @apply bg-gray-600 text-orange-600 w-full h-full p-2 flex justify-center items-center rotate-180;
+  }
+} */
+
+@layer components {
+  .card {
+    @apply relative h-full w-full shadow-xl transition-all duration-500 [transform-style:preserve-3d] cursor-pointer;
+  }
+  .card.flip {
+    @apply [transform:rotateY(180deg)] cursor-default
+  }
+}
