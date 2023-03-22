@@ -17,10 +17,12 @@ export type CardProps = {
     opened:boolean
 }
 
+let isFirst = true
+
 function App() {
 
-  const [numberOfCards, setNumberOfCards] = useState(0)
-  const [difficulty, setDifficulty] = useState('')
+  const [numberOfCards, setNumberOfCards] = useState(6)
+  const [difficulty, setDifficulty] = useState('Easy')
 
   const [cards, setCards] = useState(cardArray)
 
@@ -29,9 +31,17 @@ function App() {
   const [correctCards, setCorrectCards] = useState(0)
 
   useEffect(() => {
+
+    if (isFirst) {
+      isFirst=false
+      resetGame(6)
+      return;
+    }
+
     if (correctCards === numberOfCards) {
       setFinish(true)
     }
+    
   }, [correctCards])
   
 
@@ -60,7 +70,7 @@ function App() {
 
   const changeDifficulty = (value:string) => {
     console.log(value)
-    if (difficulty === value) return;
+    if (difficulty === value || difficulty === "") return;
     setDifficulty(value)
     if (value === "Easy") {
       setNumberOfCards(6)
@@ -81,6 +91,7 @@ function App() {
     const toBeCards = cardArray.slice(0,cardPairs)
     shuffleArray(toBeCards)
     setCards(toBeCards.map(card => card.opened = true ? {...card.opened=false as any, ...card} : card))
+    setNumberOfCards(cardPairs)
     setCorrectCards(0)
     setFinish(false)
     setOpenCard(undefined)
