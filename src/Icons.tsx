@@ -1,4 +1,7 @@
-import { FaBeer, FaMeh, FaMehRollingEyes, FaLaugh, FaLaughSquint, FaGrimace, FaGrinAlt, FaGrinHearts, FaGrinSquintTears, FaGrinTongueSquint, FaGrinWink, FaGrin, FaDizzy, FaAngry, FaKiss, FaSadCry, FaSadTear, FaSmile, FaSurprise } from 'react-icons/fa'
+import { FaBeer, FaMeh, FaMehRollingEyes, FaLaugh, FaLaughSquint, FaGrimace, FaGrinAlt, FaGrinHearts, FaGrinSquintTears,
+     FaGrinTongueSquint, FaGrinWink, FaGrin, FaDizzy, FaAngry, FaKiss, FaSadCry, FaSadTear, FaSmile, FaSurprise,
+      FaMehBlank, FaGrinTears, FaGrinStars, FaGrinTongue, FaFrown, FaFlushed } from 'react-icons/fa'
+import shuffleArray from './hooks/shuffleArray'
 
 
 
@@ -74,20 +77,44 @@ import { FaBeer, FaMeh, FaMehRollingEyes, FaLaugh, FaLaughSquint, FaGrimace, FaG
         [
             {id: 35, text: 'fasurprise', image: <FaSurprise size={96}/>, opened:false},
             {id: 36, text: 'fasurprise', image: <FaSurprise size={96}/>, opened:false}
+        ],
+        [
+            {id: 37, text: 'famehblank', image: <FaMehBlank size={96}/>, opened:false},
+            {id: 38, text: 'famehblank', image: <FaMehBlank size={96}/>, opened:false}
+        ],
+        [
+            {id: 39, text: 'fagrintears', image: <FaGrinTears size={96}/>, opened:false},
+            {id: 40, text: 'fagrintears', image: <FaGrinTears size={96}/>, opened:false}
+        ],
+        [
+            {id: 41, text: 'fagrinstars', image: <FaGrinStars size={96}/>, opened:false},
+            {id: 42, text: 'fagrinstars', image: <FaGrinStars size={96}/>, opened:false}
+        ],
+        [
+            {id: 43, text: 'fagrintongue', image: <FaGrinTongue size={96}/>, opened:false},
+            {id: 44, text: 'fagrintongue', image: <FaGrinTongue size={96}/>, opened:false}
+        ],
+        [
+            {id: 45, text: 'fafrown', image: <FaFrown size={96}/>, opened:false},
+            {id: 46, text: 'fafrown', image: <FaFrown size={96}/>, opened:false}
+        ],
+        [
+            {id: 47, text: 'faflushed', image: <FaFlushed size={96}/>, opened:false},
+            {id: 48, text: 'faflushed', image: <FaFlushed size={96}/>, opened:false}
         ]
   ]
 
-function shuffleArray(array:any) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-}
+// function shuffleArray(array:any) {
+//     for (let i = array.length - 1; i > 0; i--) {
+//         const j = Math.floor(Math.random() * (i + 1));
+//         [array[i], array[j]] = [array[j], array[i]];
+//     }
+// }
 
 shuffleArray(allCards)
 
-const toBeCards = allCards.slice(0,6).flat()
-shuffleArray(toBeCards)
+const toBeCards = allCards.slice(0,12).flat()
+// shuffleArray(toBeCards)
 export const cardArray = toBeCards
 
 

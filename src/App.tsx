@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react"
 import Card from "./Card"
+import { DifficultySelect } from "./DifficultySelect"
+import shuffleArray from "./hooks/shuffleArray"
 import { Beer, cardArray } from "./Icons"
+import Modal from "./Modal"
 
 type OpenCardProps = {
   id: number,
@@ -16,7 +19,8 @@ export type CardProps = {
 
 function App() {
 
-  const [numberOfCards, setNumberOfCards] = useState(12)
+  const [numberOfCards, setNumberOfCards] = useState(0)
+  const [difficulty, setDifficulty] = useState('')
 
   const [cards, setCards] = useState(cardArray)
 
@@ -52,23 +56,48 @@ function App() {
         }, 1000)
       }
     }
-    
   }
 
-  const resetGame = () => {
-    window.location.reload()
+  const changeDifficulty = (value:string) => {
+    console.log(value)
+    if (difficulty === value) return;
+    setDifficulty(value)
+    if (value === "Easy") {
+      setNumberOfCards(6)
+      resetGame(6)
+    }
+    if (value === "Medium") {
+      setNumberOfCards(12)
+      resetGame(12)
+    }
+    if (value === "Hard") {
+      setNumberOfCards(24)
+      resetGame(24)
+    } 
+  }
+
+  const resetGame = (cardPairs:number) => {
+    // window.location.reload()
+    const toBeCards = cardArray.slice(0,cardPairs)
+    shuffleArray(toBeCards)
+    setCards(toBeCards.map(card => card.opened = true ? {...card.opened=false as any, ...card} : card))
+    setCorrectCards(0)
+    setFinish(false)
+    setOpenCard(undefined)
   }
 
   return (
     <>
       <div className=" w-10/12 m-auto text-green-400 bg-zinc-700 text-center p-4 h-screen min-h-fit rounded-lg pb-16">
         <h1 className="text-green-500 font-bold text-4xl mb-8">MemGame</h1>
+        <DifficultySelect difficulty={difficulty} changeDifficulty={changeDifficulty}/>
         <div className="flex flex-wrap gap-8 justify-center">
           {cards.map((card) => (
-            <Card key={card.id} cardText={card.text} cardImage={card.image} cardId={card.id} cardClick={cardClick} opened={card.opened}/>
+            <Card key={card.id} cardText={card.text} cardImage={card.image} cardId={card.id} cardClick={cardClick} opened={card.opened} difficulty={difficulty}/>
           ))}
         </div>
-        {finish && <button className="bg-slate-700 border border-green-400 rounded-2xl mt-8 w-32 p-2 shadow-lg shadow-black hover:shadow-none hover:bg-slate-800/50" onClick={resetGame}>Play again</button>}
+        {finish && <> <Modal showModal={finish} resetGame={resetGame} cards={numberOfCards}/></>}
+            
       </div>
     </>
   )
