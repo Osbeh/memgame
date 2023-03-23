@@ -19,7 +19,7 @@
 
 @layer components {
   .card {
-    @apply bg-slate-600 relative h-full w-full shadow-xl transition-all duration-500 [transform-style:preserve-3d] cursor-pointer border-pink-600 border rounded-lg;
+    @apply relative h-full w-full shadow-xl transition-all duration-500 [transform-style:preserve-3d] cursor-pointer border-pink-600 border rounded-lg;
   }
   .card.flip {
     @apply [transform:rotateY(180deg)] cursor-default border-pink-600 border rounded-lg;

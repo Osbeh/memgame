@@ -24,7 +24,7 @@ export default function Card({cardText, cardId, cardImage, cardClick, opened, di
         <div className="flex rounded-lg">
             <div className={cardClass}>
                 <div onClick={() => cardClick(cardId, cardText, opened)} className={opened ? "card flip" : "card"}>
-                    <div className="absolute inset-0"></div>
+                    <div className="absolute inset-0 bg-slate-600 rounded-lg"></div>
                     <div className="absolute inset-0 text-orange-700 w-full h-full rounded-lg bg-slate-400 flex justify-center items-center [transform:rotateY(180deg)] [backface-visibility:hidden] ">
                         {cardImage}
                         <div className="lg:h-1 md:h-1 sm:w-1"></div>
