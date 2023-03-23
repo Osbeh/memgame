@@ -99,7 +99,7 @@ function App() {
 
   return (
     <>
-    <pre className="text-green-600 absolute top-1 left-1 text-xs">v.0.1.2</pre>
+    <pre className="text-green-600 absolute top-1 left-1 text-xs">v.0.1.4</pre>
       <div className=" w-10/12 m-auto text-green-400 bg-zinc-700 text-center p-4 h-screen min-h-fit rounded-lg pb-16">
         <h1 className="text-green-500 font-bold text-4xl mb-8">MemGame</h1>
         <DifficultySelect difficulty={difficulty} changeDifficulty={changeDifficulty}/>
