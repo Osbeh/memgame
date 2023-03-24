@@ -15,11 +15,11 @@ export default function Card({cardText, cardId, cardImage, cardClick, opened, di
 
     let cardClass = ""
     if (difficulty === "Hard") {
-        cardClass = "group lg:w-48 lg:h-48 md:w-24 md:h-24 sm:w-16 sm:h-16 [perspective:1000px]"
+        cardClass = "group lg:w-48 lg:h-48 md:w-28 md:h-28 sm:w-16 sm:h-16 [perspective:1000px]"
     } else if (difficulty === "Medium") {
-        cardClass = "group lg:w-56 lg:h-56 md:w-36 md:h-36 sm:w-28 sm:h-28 [perspective:1000px]"
+        cardClass = "group lg:w-56 lg:h-56 md:w-40 md:h-40 sm:w-28 sm:h-28 [perspective:1000px]"
     } else {
-        cardClass = "group lg:w-68 lg:h-68 md:w-56 md:h-56 sm:w-28 sm:h-28 [perspective:1000px]"
+        cardClass = "group lg:w-80 lg:h-80 md:w-56 md:h-56 sm:w-28 sm:h-28 [perspective:1000px]"
     }
 
     return (

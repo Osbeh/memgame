@@ -97,10 +97,11 @@ function App() {
     setOpenCard(undefined)
   }
 
+
   return (
     <>
-    <pre className="text-green-600 absolute top-1 left-1 text-xs">v.0.1.4</pre>
-      <div className=" w-10/12 m-auto text-green-400 bg-zinc-700 text-center p-4 h-screen min-h-fit rounded-lg pb-16">
+    <pre className="text-green-600 absolute top-1 left-1 text-xs">v.0.1.5</pre>
+      <div className="w-10/12 m-auto text-green-400 bg-zinc-700 text-center p-4 h-screen min-h-fit rounded-lg pb-16">
         <h1 className="text-green-500 font-bold text-4xl mb-8">MemGame</h1>
         <DifficultySelect difficulty={difficulty} changeDifficulty={changeDifficulty}/>
         <div className="flex flex-wrap gap-8 justify-center">
@@ -108,6 +109,7 @@ function App() {
             <Card key={card.id} cardText={card.text} cardImage={card.image} cardId={card.id} cardClick={cardClick} opened={card.opened} difficulty={difficulty}/>
           ))}
         </div>
+        <div className="sm:hidden lg:hidden md:hidden absolute w-full h-full inset-0 bg-black m-auto text-center p-10 font-bold text-xl"> Please rotate your device</div>
         {finish && <> <Modal showModal={finish} resetGame={resetGame} cards={numberOfCards}/></>}
             
       </div>
