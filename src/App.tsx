@@ -23,8 +23,10 @@ function App() {
 
   const [numberOfCards, setNumberOfCards] = useState(6)
   const [difficulty, setDifficulty] = useState('Easy')
+  const [clicks, setClicks] = useState(0)
 
   const [cards, setCards] = useState(cardArray)
+  const [openCards, setOpenCards] = useState(0)
 
   const [openCard, setOpenCard] = useState<OpenCardProps|undefined>(undefined)
   const [finish, setFinish] = useState(false)
@@ -47,30 +49,34 @@ function App() {
 
   const cardClick = (cardId:number, cardText:string, opened:boolean) => {
     if (opened) return;
-    console.log('click', cardId)
+    if(openCards === 2) return;
+    setClicks(prev => prev + 1)
     setCards(cards.map(card => card.id === cardId ? {...card.opened=true as any, ...card} : card))
     if (!openCard) {
       setOpenCard({id: cardId, text:cardText })
+      setOpenCards(1)
     } else {
+      setOpenCards(2)
       if (cardText === openCard.text) {
         // leave the cards open
         setOpenCard(undefined)
+        setOpenCards(0)
         setCorrectCards(prev => prev + 2)
       } else {
         // close the cards after period of time
         // check if all the cards are now opened
         setTimeout(() => {
           setCards(cards.map(card => card.id === cardId || card.id === openCard.id ?
-             {...card.opened=false as any, ...card} : card))
-          setOpenCard(undefined)
+            {...card.opened=false as any, ...card} : card))
+            setOpenCard(undefined)
+            setOpenCards(0)
         }, 1000)
       }
     }
   }
 
   const changeDifficulty = (value:string) => {
-    console.log(value)
-    if (difficulty === value || difficulty === "") return;
+    if (difficulty === value || difficulty === "" || value === "Difficulty") return;
     setDifficulty(value)
     if (value === "Easy") {
       setNumberOfCards(6)
@@ -93,6 +99,7 @@ function App() {
     setCards(toBeCards.map(card => card.opened = true ? {...card.opened=false as any, ...card} : card))
     setNumberOfCards(cardPairs)
     setCorrectCards(0)
+    setClicks(0)
     setFinish(false)
     setOpenCard(undefined)
   }
@@ -100,7 +107,7 @@ function App() {
 
   return (
     <>
-    <pre className="text-green-600 absolute top-1 left-1 text-xs">v.0.1.5</pre>
+    <pre className="text-green-600 absolute top-1 left-1 text-xs">v.0.1.6</pre>
       <div className="w-10/12 m-auto text-green-400 bg-zinc-700 text-center p-4 h-screen min-h-fit rounded-lg pb-16">
         <h1 className="text-green-500 font-bold text-4xl mb-8">MemGame</h1>
         <DifficultySelect difficulty={difficulty} changeDifficulty={changeDifficulty}/>
@@ -110,7 +117,7 @@ function App() {
           ))}
         </div>
         <div className="sm:hidden lg:hidden md:hidden absolute w-full h-full inset-0 bg-black m-auto text-center p-10 font-bold text-xl"> Please rotate your device</div>
-        {finish && <> <Modal showModal={finish} resetGame={resetGame} cards={numberOfCards}/></>}
+        {finish && <> <Modal showModal={finish} resetGame={resetGame} cards={numberOfCards} clicks={clicks}/></>}
             
       </div>
     </>

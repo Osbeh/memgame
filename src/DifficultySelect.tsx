@@ -5,7 +5,7 @@ type DifficultySelectProp = {
 
 export function DifficultySelect({ difficulty, changeDifficulty }:DifficultySelectProp) {
     const options = [
-        {value: '', text: 'Difficulty'},
+        // {value: '', text: 'Difficulty', disabled:true},
         {value: 'easy', text: 'Easy'},
         {value: 'medium', text: 'Medium'},
         {value: 'hard', text: 'Hard'},
@@ -17,8 +17,9 @@ export function DifficultySelect({ difficulty, changeDifficulty }:DifficultySele
     }
 
     return (
-        <div className="">
-            <select value={difficulty} onChange={handleChange} className="bg-zinc-800 border-green-800 border rounded-sm shadow-black shadow-md p-2 absolute top-4 right-4" >
+        <div className="flex gap-3 margin-auto absolute top-4 right-4">
+            <label htmlFor="difficulty" className="p-2">Difficulty:</label>
+            <select id="difficulty" value={difficulty} onChange={handleChange} className="bg-zinc-800 border-green-800 border rounded-sm p-2 shadow-black shadow-md " >
                 {options.map(option => (
                 <option key={option.value} value={option.text}>
                     {option.text}
