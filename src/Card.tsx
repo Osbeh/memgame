@@ -6,7 +6,7 @@ type CardProps = {
     cardImage: JSX.Element,
     cardClick: (card:number, cardText:any, opened:boolean) => void,
     opened: boolean,
-    difficulty: string
+    difficulty: "Hard" | "Medium" | "Easy"
 }
 
 
@@ -25,7 +25,7 @@ export default function Card({cardText, cardId, cardImage, cardClick, opened, di
     return (
         <div className="flex rounded-lg">
             <div className={cardClass}>
-                <div onClick={() => cardClick(cardId, cardText, opened)} className={opened ? "card flip" : "card"}>
+                <div data-testid="playcard" onClick={() => cardClick(cardId, cardText, opened)} className={opened ? "card flip" : "card"}>
                     <GiCardJoker size="auto"/>
                     {/* <div className="absolute inset-0 rounded-lg flex justify-center items-center text-green-200/50"></div> */}
                     <div className="absolute inset-0 text-orange-700 w-full h-full rounded-lg bg-slate-400 flex justify-center items-center [transform:rotateY(180deg)] [-webkit-backface-visibility:hidden] border border-pink-700">

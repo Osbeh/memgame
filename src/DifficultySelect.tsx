@@ -1,9 +1,15 @@
+import { useState } from "react";
+import { DifficultyType } from "./App";
+
 type DifficultySelectProp = {
-    difficulty: string,
-    changeDifficulty: (arg0: string) => void
+    difficulty: DifficultyType["difficulty"]
+    changeDifficulty: (arg0: DifficultyType["difficulty"]) => void
 }
 
 export function DifficultySelect({ difficulty, changeDifficulty }:DifficultySelectProp) {
+
+    const [difficultyOption, setDifficultyOption] = useState('Easy')
+
     const options = [
         // {value: '', text: 'Difficulty', disabled:true},
         {value: 'easy', text: 'Easy'},
@@ -12,7 +18,7 @@ export function DifficultySelect({ difficulty, changeDifficulty }:DifficultySele
     ];
 
     const handleChange = (e:any)=> {
-        // console.log(e.target)
+        setDifficultyOption(e.target.value)
         changeDifficulty(e.target.value)
     }
 
@@ -26,6 +32,7 @@ export function DifficultySelect({ difficulty, changeDifficulty }:DifficultySele
                 </option>
                 ))}
             </select>
+            <div className="hidden" data-testid="difficultyvalue">{difficultyOption}</div>
         </div>
     )
 }

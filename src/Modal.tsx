@@ -3,8 +3,8 @@ import { useLocalStorage } from "./hooks/useLocalStorage"
 
 type ModalProps = {
     showModal:boolean,
-    resetGame: (arg0:number) => void,
-    cards: number,
+    resetGame: (arg0:6 | 12 | 24) => void,
+    cards: 6 | 12 | 24,
     clicks: number
 }
 
@@ -17,7 +17,6 @@ export default function Modal({ showModal, resetGame, cards, clicks }:ModalProps
     let first = true
     useEffect(() => {
         if (first) {
-            console.log(clicks)
             setScores(prev => [...prev, clicks])
             first = false
         }

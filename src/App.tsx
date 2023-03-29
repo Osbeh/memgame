@@ -10,6 +10,10 @@ type OpenCardProps = {
   text: string
 }
 
+ export type DifficultyType = {
+  difficulty : "Easy" | "Medium" | "Hard"
+}
+
 export type CardProps = {
     id:number,
     text:string,
@@ -21,8 +25,8 @@ let isFirst = true
 
 function App() {
 
-  const [numberOfCards, setNumberOfCards] = useState(6)
-  const [difficulty, setDifficulty] = useState('Easy')
+  const [numberOfCards, setNumberOfCards] = useState<6 | 12 | 24>(6)
+  const [difficulty, setDifficulty] = useState<DifficultyType["difficulty"]>('Easy')
   const [clicks, setClicks] = useState(0)
 
   const [cards, setCards] = useState(cardArray)
@@ -75,8 +79,8 @@ function App() {
     }
   }
 
-  const changeDifficulty = (value:string) => {
-    if (difficulty === value || difficulty === "" || value === "Difficulty") return;
+  const changeDifficulty = (value:DifficultyType["difficulty"]) => {
+    if (difficulty === value) return;
     setDifficulty(value)
     if (value === "Easy") {
       setNumberOfCards(6)
@@ -92,7 +96,7 @@ function App() {
     } 
   }
 
-  const resetGame = (cardPairs:number) => {
+  const resetGame = (cardPairs:6 | 12 | 24) => {
     // window.location.reload()
     const toBeCards = cardArray.slice(0,cardPairs)
     shuffleArray(toBeCards)
