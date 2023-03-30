@@ -23,11 +23,10 @@ export default function Card({cardText, cardId, cardImage, cardClick, opened, di
     }
 
     return (
-        <div className="flex rounded-lg">
+        <div className="flex justify-center">
             <div className={cardClass}>
                 <div data-testid="playcard" onClick={() => cardClick(cardId, cardText, opened)} className={opened ? "card flip" : "card"}>
                     <GiCardJoker size="auto"/>
-                    {/* <div className="absolute inset-0 rounded-lg flex justify-center items-center text-green-200/50"></div> */}
                     <div className="absolute inset-0 text-orange-700 w-full h-full rounded-lg bg-slate-400 flex justify-center items-center [transform:rotateY(180deg)] [-webkit-backface-visibility:hidden] border border-pink-700">
                         {cardImage}
                     </div>
