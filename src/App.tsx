@@ -97,7 +97,6 @@ function App() {
   }
 
   const resetGame = (cardPairs:6 | 12 | 24) => {
-    // window.location.reload()
     const toBeCards = cardArray.slice(0,cardPairs)
     shuffleArray(toBeCards)
     setCards(toBeCards.map(card => card.opened = true ? {...card.opened=false as any, ...card} : card))
@@ -108,6 +107,8 @@ function App() {
     setOpenCard(undefined)
   }
 
+  const gridClass = difficulty === "Easy" ? "grid-cols-3 grid-rows-2" : difficulty === "Medium" ? "grid-cols-4 grid-rows-3" : "grid-cols-6 grid-rows-4"
+
 
   return (
     <>
@@ -115,14 +116,13 @@ function App() {
       <div className="w-10/12 m-auto text-green-400 bg-zinc-700 text-center p-4 h-screen min-h-fit rounded-lg pb-16">
         <h1 className="text-green-500 font-bold text-4xl mb-8">MemGame</h1>
         <DifficultySelect difficulty={difficulty} changeDifficulty={changeDifficulty}/>
-        <div className="flex flex-wrap gap-8 justify-center">
+        <div className={`grid gap-8 ${gridClass}`}>
           {cards.map((card) => (
             <Card key={card.id} cardText={card.text} cardImage={card.image} cardId={card.id} cardClick={cardClick} opened={card.opened} difficulty={difficulty}/>
           ))}
         </div>
         <div className="sm:hidden lg:hidden md:hidden absolute w-full h-full inset-0 bg-black m-auto text-center p-10 font-bold text-xl"> Please rotate your device</div>
         {finish && <> <Modal showModal={finish} resetGame={resetGame} cards={numberOfCards} clicks={clicks}/></>}
-            
       </div>
     </>
   )
